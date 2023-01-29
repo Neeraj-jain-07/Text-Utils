@@ -94,8 +94,8 @@ export default function TextForm(props) {
                 <button className="btn btn-danger mx-2" onClick={handleClearClick}>Clear text</button>
                 <button className="btn btn-primary mx-2" onClick={handleReverseClick}>Reverse text</button>
                 <button className="btn btn-success mx-2" onClick={handleCapatiliseClick}>Capatilise text</button>
-                <button className="btn btn-success mx-2" onClick={handleInverseCaseClick}>Inverse text</button>
-                <button className="btn btn-success mx-2" onClick={handleAlternativeCaseClick}>Alternative case</button>
+                <button className="btn btn-warning mx-2" onClick={handleInverseCaseClick}>Inverse text</button>
+                <button className="btn btn-info mx-2" onClick={handleAlternativeCaseClick}>Alternative case</button>
             </div>
             <div className="container">
                 <p>{arrLength().length} words and {text.length} characters </p>
