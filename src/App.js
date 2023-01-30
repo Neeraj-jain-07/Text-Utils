@@ -44,12 +44,12 @@ function App() {
       document.querySelector('body').style.color = 'white';
       showAlert('Dark Mode successfully enable', 'success')
       document.title = 'TextUtils - Dark Mode';
-      setInterval(() => {
-        document.title = 'TextUtils - Dark Mode';
-      }, 1000);
-      setInterval(() => {
-        document.title = 'TextUtils - Dark Mode Enable';
-      }, 600);
+      // setInterval(() => {
+      //   document.title = 'TextUtils - Dark Mode';
+      // }, 1000);
+      // setInterval(() => {
+      //   document.title = 'TextUtils - Dark Mode Enable';
+      // }, 600);
     }
   }
   const changeColor = (bgColor, texcColor) => {
@@ -72,8 +72,8 @@ function App() {
         {<Alert Alert={alert} />}
         {/* <TextForm heading="Paste your text here ..." btnC={btnC} /> */}
         <Routes>
-          <Route exact path="/Text-Utils" element={ <TextForm heading="Paste your text here ..." btnC={btnC} />} />
-          <Route exact path="/Text-Utils/about" element={ <About />}/>
+          <Route exact path="/" element={ <TextForm heading="Paste your text here ..." btnC={btnC} showAlert={showAlert} />} />
+          <Route exact path="/about" element={ <About mode={mode} />}/>
         </Routes>
   
      

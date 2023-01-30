@@ -25,6 +25,7 @@ export default function TextForm(props) {
     const handleUpClick = () => {
         setText(text.toUpperCase())
         props.showAlert('Text changed into Uppercase','success')
+        props.showAlert('Convert into uppercase','success')
         // this is for capatilise word 
         // setText(text[0].toUpperCase() + text.slice(1)) 
     }
@@ -59,6 +60,7 @@ export default function TextForm(props) {
         var copyText = document.getElementById('mybox');
         copyText.select();
         navigator.clipboard.writeText(copyText.value);
+        document.getSelection().removeAllRanges();
         props.showAlert('Text copied successfulyy','success')
     }
 
@@ -146,21 +148,21 @@ export default function TextForm(props) {
                 <div className="mb-3 mt-4">
                     <textarea style={textAreaStyle} className="form-control" value={text} onChange={handleOnChange} id="mybox" rows="8"></textarea>
                 </div>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleUpClick}>convert into uppercase</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleLoClick}>convert into lowercase</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleClearClick}>Clear text</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleReverseClick}>Reverse text</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleCapatiliseClick}>Capatilise text</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleInverseCaseClick}>Inverse case</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleAlternativeCaseClick}>Alternative case</button>
-                <button  id="liveToastBtn" className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleCoptTextClick}>Copy Text</button>
-                <button className={`btn btn-${props.btnC} mx-2 my-2`} onClick={removeExtraSpaces}>Remove Extra spaces</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleUpClick}>convert into uppercase</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleLoClick}>convert into lowercase</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleClearClick}>Clear text</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleReverseClick}>Reverse text</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleCapatiliseClick}>Capatilise text</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleInverseCaseClick}>Inverse case</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleAlternativeCaseClick}>Alternative case</button>
+                <button disabled={text.length ===0}  id="liveToastBtn" className={`btn btn-${props.btnC} mx-2 my-2`} onClick={handleCoptTextClick}>Copy Text</button>
+                <button disabled={text.length ===0} className={`btn btn-${props.btnC} mx-2 my-2`} onClick={removeExtraSpaces}>Remove Extra spaces</button>
             </div>
             <div className="container">
                 <p>{arrLength().length} words and {text.length} characters </p>
-                <p> {0.008 * text.split(" ").length} Minuite Average reading time</p>
+                <p> {0.008 * text.split(" ").filter(element => {return element.length !==0}).length} Minuite Average reading time</p>
                 <h2>Preview</h2>
-                <p className='preblue'> {text.length === 0 ? `Enter text above to see proview here` : text}</p>
+                <p className='preblue'> {text.length === 0 ? `Nothing to preview` : text}</p>
             </div>
 
             {/* alert when you do copy */}
