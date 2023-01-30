@@ -1,41 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 
 export default function Navbar(props) {
+    const round = {
+        "width": "25px",
+        "height": "25px"
+    } 
+    const modeSuccess=()=> {
+        props.setmode('success')
+        props.changeColor('success','#254938')
+    }
+    const modeDanger=()=> {
+        props.setmode('danger')
+        props.changeColor('danger','#73252d')
+    }
+    const modeWarning=()=> {
+        props.setmode('warning')
+        props.changeColor('warning','#a58e48')
+    }
     return (
-        <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="/">{props.title}</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+        <nav className={`navbar navbar-expand-lg bg-${props.mode} `} data-bs-theme="dark">
+            <div className={`container-fluid `}>
+                <Link className={`navbar-brand text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bolder fs-4`} to="/Text-Utils">{props.title}</Link>
+                {/* <a className={`navbar-brand text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bolder fs-4`} href="/Text-Utils">{props.title}</a> */}
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/">Home</a>
+                            <Link className={`nav-link active text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bold fs-5`} aria-current="page" to="/Text-Utils">Home</Link>
+                            {/* <a className={`nav-link active text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bold fs-5`} aria-current="page" href="/Text-Utils">Home</a> */}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">{props.about}</a>
+                            <Link className={`nav-link active text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bold fs-5`} to="/Text-Utils/about">{props.about}</Link>
+                            {/* <a className={`nav-link active text-${props.mode === 'light' ? 'dark' : 'light'}  fw-bold fs-5`} href="/Text-Utils/about">{props.about}</a> */}
                         </li>
 
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2 text-dark" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-primary " type="submit">Search</button>
-                    </form>
+                    <div className='d-flex flex-row  gap-2 mx-5'>
+                         <button type="button" style={round} className="btn btn-success rounded-circle border border-white" onClick={modeSuccess}></button>
+                         <button type="button" style={round} className="btn btn-danger rounded-circle border border-white" onClick={modeDanger}></button>
+                         <button type="button" style={round} className="btn btn-warning rounded-circle border border-white" onClick={modeWarning}></button>
+                    </div>
+                    
+
+                    <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
+                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox"  id="flexSwitchCheckDefault" />
+                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault" >Enable {props.mode === 'dark' ? 'light' : 'dark'} Mode</label>
+                    </div>
+
                 </div>
             </div>
         </nav>
     )
 }
 
-Navbar.prototype ={
-    title:PropTypes.string.isRequired,
-    about:PropTypes.string.isRequired
+Navbar.prototype = {
+    title: PropTypes.string.isRequired,
+    about: PropTypes.string.isRequired
 }
 
-// Navbar.defaultProps ={
-//     title:"set title here",
-//     about:"set about here"
-// }
+Navbar.defaultProps = {
+    title: "set title here",
+    about: "About"
+}
