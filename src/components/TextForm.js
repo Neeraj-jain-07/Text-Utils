@@ -57,10 +57,12 @@ export default function TextForm(props) {
 
 
     const handleCoptTextClick = () => {
-        var copyText = document.getElementById('mybox');
-        copyText.select();
-        navigator.clipboard.writeText(copyText.value);
-        document.getSelection().removeAllRanges();
+        // var copyText = document.getElementById('mybox');
+        // copyText.select();
+        // navigator.clipboard.writeText(copyText.value);
+        // document.getSelection().removeAllRanges();
+
+        navigator.clipboard.writeText(text);
         props.showAlert('Text copied successfulyy','success')
     }
 
@@ -114,7 +116,7 @@ export default function TextForm(props) {
 
 
     const arrLength = () => {
-        var arr = text.split(" ");
+        var arr = text.split(/\s+/);
         var narr = arr.filter(function (value, index, array) {
             return value !== ''
         })
@@ -160,7 +162,7 @@ export default function TextForm(props) {
             </div>
             <div className="container">
                 <p>{arrLength().length} words and {text.length} characters </p>
-                <p> {0.008 * text.split(" ").filter(element => {return element.length !==0}).length} Minuite Average reading time</p>
+                <p> {0.008 * text.split(/\s+/).filter(element => {return element.length !==0}).length} Minuite Average reading time</p>
                 <h2>Preview</h2>
                 <p className='preblue'> {text.length === 0 ? `Nothing to preview` : text}</p>
             </div>
