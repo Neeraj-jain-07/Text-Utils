@@ -8,18 +8,6 @@ export default function Navbar(props) {
         "width": "25px",
         "height": "25px"
     }
-    const modeSuccess = () => {
-        props.setmode('success')
-        props.changeColor('success', '#254938')
-    }
-    const modeDanger = () => {
-        props.setmode('danger')
-        props.changeColor('danger', '#73252d')
-    }
-    const modeWarning = () => {
-        props.setmode('warning')
-        props.changeColor('warning', '#a58e48')
-    }
     return (
         <nav className={`navbar navbar-expand-lg bg-${props.mode} `} >
             <div className="container-fluid">
@@ -48,12 +36,12 @@ export default function Navbar(props) {
                         </li>
                     </ul>
                     <div className='d-flex flex-row  gap-2 mx-5'>
-                        <button type="button" style={round} className="btn btn-success rounded-circle border border-white" onClick={modeSuccess}></button>
-                        <button type="button" style={round} className="btn btn-danger rounded-circle border border-white" onClick={modeDanger}></button>
-                        <button type="button" style={round} className="btn btn-warning rounded-circle border border-white" onClick={modeWarning}></button>
+                        <button type="button" style={round} className="btn btn-success rounded-circle border border-white" onClick={() => props.changeColor('success','#254938')}></button>
+                        <button type="button" style={round} className="btn btn-danger rounded-circle border border-white" onClick={() => props.changeColor('danger','#73252d')}></button>
+                        <button type="button" style={round} className="btn btn-warning rounded-circle border border-white" onClick={() => props.changeColor('warning','#a58e48')}></button>
                     </div>
                     <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
-                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault" />
+                        <input className="form-check-input" onClick={() => props.toggleMode('dark')} type="checkbox" id="flexSwitchCheckDefault" />
                         <label className="form-check-label" htmlFor="flexSwitchCheckDefault" >Enable {props.mode === 'dark' ? 'light' : 'dark'} Mode</label>
                     </div>
                 </div>

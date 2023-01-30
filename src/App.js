@@ -29,7 +29,8 @@ function App() {
   // this is for mode changing
   const [mode, setmode] = useState('light');
 
-  const toggleMode = () => {
+  const toggleMode = (tmode) => {
+    console.log(tmode)
     if (mode === 'dark') {
       setmode('light');
       setBtnColor('primary');
